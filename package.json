@@ -1,14 +1,15 @@
 {
-  "name": "sandbox",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.4"
-  }
+    "name": "sandbox",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./server/index.js",
+    "scripts": {
+        "test": "node test",
+        "start": "node index.js"
+    },
+    "author": "Andrei Lesnitsky <andrei.lesnitsky@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.16.4"
+    }
 }
