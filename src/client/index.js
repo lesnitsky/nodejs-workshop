@@ -10,7 +10,7 @@ button.addEventListener('click', () => {
 
   fetch(`http://localhost:3000/calc?a=${inputA.value}&b=${inputB.value}&operator=${operator}`)
     .then(res => res.text())
-    .then(result => {
+    .then((result) => {
       answer.innerHTML = result;
     });
 });
