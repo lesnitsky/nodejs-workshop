@@ -1,21 +1,22 @@
 {
-    "name": "sandbox",
-    "version": "1.0.0",
-    "description": "",
-    "main": "./server/index.js",
-    "scripts": {
-        "test": "node test",
-        "start": "node index.js",
-        "lint": "eslint src/"
-    },
-    "author": "Andrei Lesnitsky <andrei.lesnitsky@gmail.com>",
-    "license": "MIT",
-    "dependencies": {
-        "express": "^4.16.4"
-    },
-    "devDependencies": {
-        "eslint": "^5.7.0",
-        "eslint-config-airbnb-base": "^13.1.0",
-        "eslint-plugin-import": "^2.14.0"
-    }
+  "name": "sandbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./server/index.js",
+  "scripts": {
+    "test": "node test",
+    "start": "node src/server/index.js",
+    "lint": "eslint src/"
+  },
+  "author": "Andrei Lesnitsky <andrei.lesnitsky@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
 }
