@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  const { content, isDone } = req.body;
   todosModel.create({ content, isDone });
 
   res.end();
