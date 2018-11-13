@@ -1,5 +1,3 @@
-console.log('dom.js');
-
 export default function getDomElements() {
   const inputA = document.querySelector('#a');
   const inputB = document.querySelector('#b');

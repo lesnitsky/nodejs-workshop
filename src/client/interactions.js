@@ -1,5 +1,3 @@
-console.log('interactions.js');
-
 export default function bindListeners({
   button, select, inputA, inputB, answer,
 }) {
@@ -9,7 +7,7 @@ export default function bindListeners({
     fetch(`http://localhost:3000/calc?a=${inputA.value}&b=${inputB.value}&operator=${operator}`)
       .then(res => res.text())
       .then((result) => {
-        answer.innerHTML = result;
+        answer.innerHTML = result; // eslint-disable-line
       });
   });
 }

@@ -8,7 +8,7 @@ export default class Button {
   mount(parentNode) {
     this.parentNode = parentNode;
 
-    parentNode.innerHTML = `<button>${this.text}</button>`;
+    parentNode.innerHTML = `<button>${this.text}</button>`; // eslint-disable-line
 
     this.button = parentNode.querySelector('button');
   }

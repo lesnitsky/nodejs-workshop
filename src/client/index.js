@@ -2,8 +2,6 @@ import getDomElements from './dom.js';
 import bindListeners from './interactions.js';
 import Button from './components/Button';
 
-console.log('index.js');
-
 const {
   inputA, inputB, select, answer, buttonContainer,
 } = getDomElements();
