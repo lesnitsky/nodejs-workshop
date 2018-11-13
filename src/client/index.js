@@ -1,16 +1,20 @@
-const inputA = document.querySelector('#a');
-const inputB = document.querySelector('#b');
-const select = document.querySelector('select');
-const button = document.querySelector('button');
+import getDomElements from './dom';
+import bindListeners from './interactions';
+import Button from './components/Button';
 
-const answer = document.querySelector('#answer');
+console.log('index.js');
 
-button.addEventListener('click', () => {
-  const operator = encodeURIComponent(select.value);
+const {
+  inputA, inputB, select, answer, buttonContainer,
+} = getDomElements();
 
-  fetch(`http://localhost:3000/calc?a=${inputA.value}&b=${inputB.value}&operator=${operator}`)
-    .then(res => res.text())
-    .then((result) => {
-      answer.innerHTML = result;
-    });
+const button = new Button('Calculate');
+button.mount(buttonContainer);
+
+bindListeners({
+  inputA,
+  inputB,
+  select,
+  button,
+  answer,
 });

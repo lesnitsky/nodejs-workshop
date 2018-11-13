@@ -5,10 +5,3 @@ body {
 input {
   padding: 10px;
 }
-
-button {
-  padding: 10px;
-  border: none;
-  background: rebeccapurple;
-  color: white;
-}

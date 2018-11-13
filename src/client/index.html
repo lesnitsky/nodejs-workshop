@@ -1,30 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-<body>
-    <p><input type="text" placeholder="Number A" id="a"></p>
+  <body>
+    <p><input type="text" placeholder="Number A" id="a" /></p>
     <p>
-        <select value="+">
-            <option value="+">+</option>
-            <option value="-">-</option>
-            <option value="*">*</option>
-            <option value="/">/</option>
-            <option value="**">**</option>
-        </select>
+      <select value="+">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="**">**</option>
+      </select>
     </p>
-    <p><input type="text" placeholder="Number B" id="b"></p>
-    <p><button>Calculate</button></p>
+    <p><input type="text" placeholder="Number B" id="b" /></p>
+    <p id="buttonContainer"></p>
     <p>Answer: <span id="answer"></span></p>
 
-    <script src="./index.js"></script>
-</body>
-
+    <script src="./dist/app.bundle.js"></script>
+  </body>
 </html>
