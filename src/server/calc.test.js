@@ -1,5 +1,5 @@
 const assert = require('assert');
-const { calculate } = require('../src/server/calc');
+const { calculate } = require('./calc');
 
 assert(calculate(64, 'sqrt') === 8);
 
