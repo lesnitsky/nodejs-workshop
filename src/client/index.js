@@ -1,5 +1,5 @@
-import getDomElements from './dom';
-import bindListeners from './interactions';
+import getDomElements from './dom.js';
+import bindListeners from './interactions.js';
 import Button from './components/Button';
 
 console.log('index.js');
