@@ -1,40 +1,53 @@
 const express = require('express');
 
 const todosModel = require('./todos-model');
+const asyncHandler = require('./utils');
 
 const router = new express.Router();
 
-router.get('/', async (req, res) => {
-  const todos = todosModel.read();
+router.get(
+  '/',
+  asyncHandler(async (req, res) => {
+    const todos = await todosModel.read();
 
-  res.append('Content-Type', 'application/json');
-  res.write(todos);
+    res.append('Content-Type', 'application/json');
+    res.write(todos);
 
-  res.end();
-});
+    res.end();
+  }),
+);
 
-router.post('/', async (req, res) => {
-  const { content, isDone } = req.body;
-  todosModel.create({ content, isDone });
+router.post(
+  '/',
+  asyncHandler(async (req, res) => {
+    const { content, isDone } = req.body;
+    await todosModel.create({ content, isDone });
 
-  res.end();
-});
+    res.end();
+  }),
+);
 
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+router.delete(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
 
-  todosModel.deleteById(id);
+    await todosModel.deleteById(id);
 
-  res.end();
-});
+    res.end();
+  }),
+);
 
-router.put('/:id', async (req, res) => {
-  const { id } = req.params;
-  const { content, isDone } = req.body;
+router.put(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { content, isDone } = req.body;
 
-  todosModel.update({ id, content, isDone });
+    await todosModel.update({ id, content, isDone });
 
-  res.end();
-});
+    res.end();
+  }),
+);
 
 module.exports = router;

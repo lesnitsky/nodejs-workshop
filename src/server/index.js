@@ -18,4 +18,8 @@ app.get('/calc', handler);
 
 app.use('/todos', todosRouter);
 
+app.use((err, req, res, _) => {
+  res.status(500).send('Smth went wrong');
+});
+
 app.listen(3000);
