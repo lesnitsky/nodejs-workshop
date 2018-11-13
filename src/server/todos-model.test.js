@@ -1,30 +1,38 @@
 const assert = require('assert');
-const proxyquire = require('proxyquire').noCallThru();
+const proxyquire = require('proxyquire');
 
 let readTodosWasCalled = false;
 
-function readTodos() {
+async function readTodos() {
   readTodosWasCalled = true;
+
+  return JSON.stringify([
+    {
+      id: 'somId',
+      content: 'Some content',
+      isDone: false,
+    },
+  ]);
 }
 
-function writeTodos() {}
+async function writeTodos() {
+  return null;
+}
 
-proxyquire('./todos-model', {
+const todosModel = proxyquire('./todos-model', {
   './db': {
     readTodos,
     writeTodos,
   },
 });
 
-const todosModel = require('./todos-model');
-
 describe('TodosModel', () => {
   describe('#create', () => {
-    // it('creates new model', async () => {
-    //   await todosModel.create({ content: 'Some content', isDone: false });
+    it('creates new model', async () => {
+      await todosModel.create({ content: 'Some content', isDone: false });
 
-    //   assert(readTodosWasCalled);
-    // });
+      assert(readTodosWasCalled);
+    });
 
     it('throws if invalid data was passed', async () => {
       assert.rejects(async () => {

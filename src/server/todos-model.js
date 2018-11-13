@@ -10,7 +10,7 @@ module.exports.create = async function create({ content, isDone }) {
   const data = await readTodos();
   const todos = JSON.parse(data);
 
-  if (!content || !isDone) {
+  if (!content || typeof isDone === 'undefined') {
     throw new Error();
   }
 
