@@ -22,7 +22,7 @@ module.exports.writeTodos = async function writeTodos(todos) {
   const data = JSON.stringify(todos, null, 2);
 
   const promise = new Promise((resolve, reject) => {
-    fs.writeFile(pathToTodosFile, data, err => {
+    fs.writeFile(pathToTodosFile, data, (err) => {
       if (err) {
         return reject(err);
       }
