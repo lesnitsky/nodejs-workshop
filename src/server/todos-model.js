@@ -1,50 +1,42 @@
-const { readTodos, writeTodos } = require('./db');
+const mongoose = require('mongoose');
+
+const TodoSchema = require('./todo-schema');
+
+const TodoModel = mongoose.model('Todo', TodoSchema);
 
 module.exports.read = async function read() {
-  const todos = await readTodos();
+  const todos = await TodoModel.find({}).exec();
+
+  return todos;
+};
+
+module.exports.readById = async function readById(id) {
+  const todos = await TodoModel.findOne({ _id: id }).exec();
 
   return todos;
 };
 
 module.exports.create = async function create({ content, isDone }) {
-  const data = await readTodos();
-  const todos = JSON.parse(data);
-
-  if (!content || typeof isDone === 'undefined') {
-    throw new Error();
-  }
-
-  todos.push({
+  await TodoModel.create({
     content,
     isDone,
-    id: Math.random(),
   });
-
-  await writeTodos(todos);
 };
 
 module.exports.deleteById = async function deleteById(id) {
-  const data = await readTodos();
-  let todos = JSON.parse(data);
-
-  todos = todos.filter(todo => todo.id !== id);
-
-  await writeTodos(todos);
+  await TodoModel.findOneAndDelete({ _id: id }).exec();
 };
 
 module.exports.update = async function update({ id, content, isDone }) {
-  const data = await readTodos();
-  const todos = JSON.parse(data);
+  const updateObj = {};
 
-  const todoToUpdate = todos.find(todo => todo.id === id);
-
-  if (content !== undefined) {
-    todoToUpdate.conent = content;
+  if (content) {
+    updateObj.content = content;
   }
 
-  if (isDone !== undefined) {
-    todoToUpdate.isDone = isDone;
+  if (typeof isDone === 'boolean') {
+    updateObj.isDone = isDone;
   }
 
-  await writeTodos(todos);
+  await TodoModel.findByIdAndUpdate({ _id: id }, updateObj).exec();
 };

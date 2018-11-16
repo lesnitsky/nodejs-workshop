@@ -10,9 +10,19 @@ router.get(
   asyncHandler(async (req, res) => {
     const todos = await todosModel.read();
 
-    res.append('Content-Type', 'application/json');
-    res.write(todos);
+    res.json(todos);
+    res.end();
+  }),
+);
 
+router.get(
+  '/:id',
+  asyncHandler(async (req, res) => {
+    const { id } = req.params;
+
+    const todo = await todosModel.readById(id);
+
+    res.json(todo);
     res.end();
   }),
 );

@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const { handler } = require('./calc');
 const todosRouter = require('./todos-router');
+
+mongoose.connect('mongodb://localhost/todos');
 
 const app = express();
 

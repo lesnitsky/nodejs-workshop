@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha src/server/*.test.js",
     "start": "node src/server/index.js",
+    "debug": "node --inspect src/server/",
     "lint": "eslint src/",
     "build": "webpack --progress",
     "dev": "webpack -w",
@@ -15,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.3.12"
   },
   "husky": {
     "hooks": {
