@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const { handler } = require('./calc');
 const todosRouter = require('./todos-router');
+const usersRouter = require('./users-router');
 
 mongoose.connect('mongodb://localhost/todos');
 
@@ -20,6 +21,7 @@ app.use((req, res, next) => {
 app.get('/calc', handler);
 
 app.use('/todos', todosRouter);
+app.use('/users', usersRouter);
 
 /* eslint-disable */
 app.use((err, req, res, _) => {

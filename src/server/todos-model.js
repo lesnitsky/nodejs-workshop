@@ -7,13 +7,15 @@ const TodoModel = mongoose.model('Todo', TodoSchema);
 module.exports.read = async function read() {
   const todos = await TodoModel.find({}).exec();
 
-  return todos;
+  return todos.map(todo => todo.cleanup());
 };
 
 module.exports.readById = async function readById(id) {
-  const todos = await TodoModel.findOne({ _id: id }).exec();
+  const todo = await TodoModel.findOne({ _id: id })
+    .populate('creator')
+    .exec();
 
-  return todos;
+  return todo.cleanup();
 };
 
 module.exports.create = async function create({ content, isDone }) {
@@ -27,8 +29,12 @@ module.exports.deleteById = async function deleteById(id) {
   await TodoModel.findOneAndDelete({ _id: id }).exec();
 };
 
-module.exports.update = async function update({ id, content, isDone }) {
-  const updateObj = {};
+module.exports.update = async function update({
+  id, content, isDone, creator,
+}) {
+  const updateObj = {
+    creator: mongoose.Types.ObjectId(creator),
+  };
 
   if (content) {
     updateObj.content = content;
