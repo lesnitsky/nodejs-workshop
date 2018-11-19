@@ -1,16 +1,29 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
-const { handler } = require('./calc');
-const todosRouter = require('./todos-router');
-const usersRouter = require('./users-router');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+
+const authRouter = require('./routers/auth-router');
+const todosRouter = require('./routers/todos-router');
+const usersRouter = require('./routers/users-router');
+
+require('./auth/config');
 
 mongoose.connect('mongodb://localhost/todos');
 
 const app = express();
 
+app.use(express.static('static'));
+
+app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(expressSession({ secret: 'SOME SECRET KEY' }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -18,7 +31,15 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/calc', handler);
+app.use('/auth', authRouter);
+
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect('/login.html');
+  }
+});
 
 app.use('/todos', todosRouter);
 app.use('/users', usersRouter);

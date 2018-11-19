@@ -1,16 +1,16 @@
 const express = require('express');
 
-const todosModel = require('./todos-model');
-const asyncHandler = require('./utils');
+const UserModel = require('../models/user-model');
+const asyncHandler = require('../utils');
 
 const router = new express.Router();
 
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const todos = await todosModel.read();
+    const users = await UserModel.find({}).exec();
 
-    res.json(todos);
+    res.json(users);
     res.end();
   }),
 );
@@ -20,9 +20,9 @@ router.get(
   asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    const todo = await todosModel.readById(id);
+    const user = await UserModel.findById({ _id: id });
 
-    res.json(todo);
+    res.json(user);
     res.end();
   }),
 );
@@ -30,8 +30,8 @@ router.get(
 router.post(
   '/',
   asyncHandler(async (req, res) => {
-    const { content, isDone } = req.body;
-    await todosModel.create({ content, isDone });
+    const { name } = req.body;
+    await UserModel.create({ name });
 
     res.end();
   }),
@@ -42,7 +42,7 @@ router.delete(
   asyncHandler(async (req, res) => {
     const { id } = req.params;
 
-    await todosModel.deleteById(id);
+    await UserModel.findByIdAndRemove(id);
 
     res.end();
   }),
@@ -52,9 +52,9 @@ router.put(
   '/:id',
   asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { content, isDone } = req.body;
+    const { name } = req.body;
 
-    await todosModel.update({ id, content, isDone });
+    await UserModel.findByIdAndUpdate({ _id: id }, { name });
 
     res.end();
   }),
