@@ -31,8 +31,9 @@ router.post(
   '/',
   asyncHandler(async (req, res) => {
     const { content, isDone } = req.body;
-    await todosModel.create({ content, isDone });
+    const todo = await todosModel.create({ content, isDone });
 
+    res.json(todo.cleanup());
     res.end();
   }),
 );

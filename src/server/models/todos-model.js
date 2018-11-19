@@ -19,10 +19,12 @@ module.exports.readById = async function readById(id) {
 };
 
 module.exports.create = async function create({ content, isDone }) {
-  await TodoModel.create({
+  const todo = await TodoModel.create({
     content,
     isDone,
   });
+
+  return todo;
 };
 
 module.exports.deleteById = async function deleteById(id) {

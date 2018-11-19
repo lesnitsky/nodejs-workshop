@@ -1,7 +1,4 @@
-body {
-  text-align: center;
-}
-
-input {
-  padding: 10px;
+.todo-item {
+  display: flex;
+  align-items: center;
 }

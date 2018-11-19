@@ -6,6 +6,14 @@ const asyncHandler = require('../utils');
 const router = new express.Router();
 
 router.get(
+  '/me',
+  asyncHandler(async (req, res) => {
+    res.json(req.user);
+    res.end();
+  }),
+);
+
+router.get(
   '/',
   asyncHandler(async (req, res) => {
     const users = await UserModel.find({}).exec();
