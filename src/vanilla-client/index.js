@@ -8,6 +8,7 @@ function createTodoNode(todo) {
   <div data-id="${todo.id}" class="todo-item">
     <input type="checkbox" ${todo.isDone ? 'checked' : ''}/>
     <p>${todo.content}</p>
+    <button class="delete-btn">Delete</button>
   </div>
 `;
   return div;
@@ -34,6 +35,24 @@ async function createTodo({ content, isDone }) {
   const todo = await res.json();
 
   return todo;
+}
+
+async function updateTodo({ id, isDone }) {
+  const body = JSON.stringify({ isDone });
+
+  await fetch(`/todos/${id}`, {
+    method: 'put',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body,
+  });
+}
+
+async function deleteTodo({ id }) {
+  await fetch(`/todos/${id}`, {
+    method: 'delete',
+  });
 }
 
 (async () => {
@@ -71,5 +90,24 @@ async function createTodo({ content, isDone }) {
   todos.forEach((todo) => {
     const div = createTodoNode(todo);
     document.body.appendChild(div);
+  });
+
+  document.body.addEventListener('click', async (e) => {
+    if (e.target.matches('input[type="checkbox"]')) {
+      const { id } = e.target.parentNode.dataset;
+      const isDone = e.target.checked;
+
+      updateTodo({ id, isDone });
+    }
+
+    if (e.target.matches('button.delete-btn')) {
+      const { id } = e.target.parentNode.dataset;
+
+      await deleteTodo({ id });
+
+      e.target.parentNode.remove();
+    }
+
+    console.log('click');
   });
 })();
