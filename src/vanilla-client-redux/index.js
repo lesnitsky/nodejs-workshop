@@ -1,8 +1,8 @@
-import { store } from './store';
+import { store } from '../redux/store';
 
 import {
   createTodo, fetchTodos, deleteTodo, updateTodo,
-} from './actions';
+} from '../redux/actions';
 
 require('./style.css');
 
