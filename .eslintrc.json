@@ -1,12 +1,14 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "node": true,
     "mocha": true
   },
-  "extends": "airbnb-base",
+  "extends": ["airbnb-base", "plugin:react/recommended"],
   "rules": {
     "import/extensions": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": "off",
     "no-use-before-define": "off"
   }

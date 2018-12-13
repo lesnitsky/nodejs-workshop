@@ -22,7 +22,10 @@
     "mongoose": "^5.3.12",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
-    "redux": "^4.0.1"
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "redux": "^4.0.1",
+    "styled-jsx": "^3.1.2"
   },
   "husky": {
     "hooks": {
@@ -31,13 +34,20 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "8",
+    "babel-loader": "^8.0.4",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.4",
     "mocha": "^5.2.0",
+    "prop-types": "^15.6.2",
     "proxyquire": "^2.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",

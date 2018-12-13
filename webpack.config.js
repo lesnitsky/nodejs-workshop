@@ -2,7 +2,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: './src/react-client/index.js',
   output: {
     path: path.join(__dirname, 'static'),
     filename: 'app.bundle.js',
@@ -10,6 +10,10 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader'],
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
@@ -26,15 +30,15 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: './src/client/index.html',
+        from: './src/react-client/index.html',
         to: 'index.html',
       },
       {
-        from: './src/client/login.html',
+        from: './src/react-client/login.html',
         to: 'login.html',
       },
       {
-        from: './src/client/style.css',
+        from: './src/react-client/style.css',
         to: 'style.css',
       },
     ]),
